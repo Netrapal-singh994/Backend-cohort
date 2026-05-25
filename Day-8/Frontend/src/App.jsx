@@ -18,7 +18,7 @@ function App() {
     const { title, description } = e.target.elements;
 
     axios
-      .post("http://localhost:3000/api/notes", {
+      .post("https://backend-cohort-km0p.onrender.com/api/notes", {
         title: title.value,
         description: description.value,
       })
@@ -36,7 +36,9 @@ function App() {
   // get notes
   async function fetchNotes() {
     try {
-      const response = await axios.get("http://localhost:3000/api/notes");
+      const response = await axios.get(
+        "https://backend-cohort-km0p.onrender.com/api/notes",
+      );
 
       setNote(response.data.notes);
     } catch (error) {
@@ -47,7 +49,7 @@ function App() {
   // delete
   const handleDeleteNote = (id) => {
     axios
-      .delete(`http://localhost:3000/api/notes/${id}`)
+      .delete(`https://backend-cohort-km0p.onrender.com/api/notes/${id}`)
       .then(() => {
         fetchNotes();
       })
@@ -71,9 +73,12 @@ function App() {
     e.preventDefault();
 
     axios
-      .patch(`http://localhost:3000/api/notes/${editNote._id}`, {
-        description: editNote.description,
-      })
+      .patch(
+        `https://backend-cohort-km0p.onrender.com/api/notes/${editNote._id}`,
+        {
+          description: editNote.description,
+        },
+      )
       .then(() => {
         fetchNotes();
         setIsModalOpen(false);
